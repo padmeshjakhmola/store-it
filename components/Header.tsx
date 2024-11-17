@@ -5,12 +5,18 @@ import Search from "./Search";
 import FileUploder from "./FileUploder";
 import { signOutUser } from "@/lib/actions/user.actions";
 
-const Header = () => {
+const Header = ({
+  userId,
+  accountId,
+}: {
+  userId: string;
+  accountId: string;
+}) => {
   return (
     <header className="header">
       <Search />
       <div className="header-wrapper">
-        <FileUploder />
+        <FileUploder ownerId={userId} accountId={accountId} />
         <form
           action={async () => {
             "use server";

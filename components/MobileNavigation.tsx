@@ -18,7 +18,7 @@ import FileUploder from "./FileUploder";
 import { signOutUser } from "@/lib/actions/user.actions";
 
 interface Props {
-  ownerId: string;
+  $id: string;
   accoundId: string;
   avatar: string;
   fullName: string;
@@ -26,7 +26,7 @@ interface Props {
 }
 
 const MobileNavigation = ({
-  ownerId,
+  $id: ownerId,
   accoundId,
   avatar,
   fullName,
@@ -106,7 +106,7 @@ const MobileNavigation = ({
           <Separator className="my-5 bg-light-200/20" />
 
           <div className="flex flex-col justify-between gap-5 pb-5">
-            <FileUploder />
+            <FileUploder ownerId={ownerId} accountId={accoundId} />
             <Button
               type="submit"
               className="mobile-sign-out-button"

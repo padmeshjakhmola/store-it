@@ -1,11 +1,12 @@
 "use client";
 
-import React, { MouseEvent, useCallback, useState } from "react";
+import React, { useCallback, useState } from "react";
+
 import { useDropzone } from "react-dropzone";
-import { Button } from "./ui/button";
+import { Button } from "@/components/ui/button";
 import { cn, convertFileToUrl, getFileType } from "@/lib/utils";
 import Image from "next/image";
-import Thumbnail from "./Thumbnail";
+import Thumbnail from "@/components/Thumbnail";
 import { MAX_FILE_SIZE } from "@/constants";
 import { useToast } from "@/hooks/use-toast";
 import { uploadFile } from "@/lib/actions/file.action";
@@ -61,11 +62,11 @@ const FileUploder = ({ ownerId, accountId, className }: Props) => {
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
 
   const handleRemoveFile = (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    e: React.MouseEvent<HTMLImageElement, MouseEvent>,
     fileName: string
   ) => {
     e.stopPropagation();
-    setFiles((preFiles) => preFiles.filter((file) => file.name !== fileName));
+    setFiles((prevFiles) => prevFiles.filter((file) => file.name !== fileName));
   };
 
   return (
@@ -86,7 +87,7 @@ const FileUploder = ({ ownerId, accountId, className }: Props) => {
           <h4 className="h4 text-light-100">Uploding</h4>
 
           {files.map((file, index) => {
-           const { type, extension } = getFileType(file.name);
+            const { type, extension } = getFileType(file.name);
 
             return (
               <li

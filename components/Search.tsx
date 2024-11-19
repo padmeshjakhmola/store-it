@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import React, { use, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Input } from "./ui/input";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { Models } from "node-appwrite";

@@ -32,7 +32,8 @@ const Search = () => {
     };
 
     fetchFiles();
-  }, [debouncedQuery, path, router, searchParams]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [debouncedQuery]);
 
   useEffect(() => {
     if (!searchQuery) {

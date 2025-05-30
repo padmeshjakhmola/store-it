@@ -29,7 +29,8 @@ const chartConfig = {
 } satisfies ChartConfig;
 
 export const Chart = ({ used = 0 }: { used: number }) => {
-  const chartData = [{ storage: "used", 10: used, fill: "white" }];
+  // const chartData = [{ storage: "used", 10: used, fill: "white" }];
+  const chartData = [{ name: "used", value: used, fill: "white" }];
 
   return (
     <Card className="chart">
@@ -49,7 +50,8 @@ export const Chart = ({ used = 0 }: { used: number }) => {
               className="polar-grid"
               polarRadius={[86, 74]}
             />
-            <RadialBar dataKey="storage" background cornerRadius={10} />
+            {/* <RadialBar dataKey="storage" background cornerRadius={10} /> */}
+            <RadialBar dataKey="value" background cornerRadius={10} />
             <PolarRadiusAxis tick={false} tickLine={false} axisLine={false}>
               <Label
                 content={({ viewBox }) => {

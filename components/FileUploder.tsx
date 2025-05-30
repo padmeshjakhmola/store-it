@@ -108,6 +108,7 @@ const FileUploder = ({ ownerId, accountId, className }: Props) => {
                       alt="loader"
                       width={80}
                       height={26}
+                      unoptimized
                     />
                   </div>
                 </div>

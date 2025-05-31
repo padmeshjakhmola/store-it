@@ -7,19 +7,28 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { usePathname, useRouter } from "next/navigation";
+// import { usePathname, useRouter } from "next/navigation";
 import { sortTypes } from "@/constants";
 
-const Sort = () => {
-  const path = usePathname();
-  const router = useRouter();
+interface SortProps {
+  sort: string;
+  setSort: (value: string) => void;
+}
 
+const Sort: React.FC<SortProps> = ({ sort, setSort }) => {
+  // const path = usePathname();
+  // const router = useRouter();
   const handleSort = (value: string) => {
-    router.push(`${path}/?sort=${value}`);
+    // router.push(`${path}/?sort=${value}`);
+    setSort(value);
   };
-
   return (
-    <Select onValueChange={handleSort} defaultValue={sortTypes[0].value}>
+    // <Select onValueChange={handleSort} defaultValue={sortTypes[0].value}>
+    <Select
+      onValueChange={handleSort}
+      value={sort}
+      defaultValue={sortTypes[0].value}
+    >
       <SelectTrigger className="sort-select">
         <SelectValue placeholder={sortTypes[0].value} />
       </SelectTrigger>

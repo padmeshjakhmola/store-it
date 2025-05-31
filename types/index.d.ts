@@ -85,7 +85,7 @@ declare interface ShareInputProps {
 
 declare interface AllFilesType {
   searchText: string;
-  sort: string;
+  sort?: string;
   types: FileType[];
   type: string;
 }

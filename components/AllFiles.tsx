@@ -11,17 +11,20 @@ import {
   AllFilesType,
   TotalSpaceUsedType,
 } from "@/types";
+import { sortTypes } from "@/constants";
 
-const AllFiles = ({ searchText, sort, types, type }: AllFilesType) => {
+const AllFiles = ({ searchText, types, type }: AllFilesType) => {
   const [loding, setLoding] = useState(true);
 
   const [totalSpace, setTotalSpace] = useState<TotalSpaceUsedType | null>(null);
   const [allFiles, setAllFiles] = useState<AllFilesResponseType | null>(null);
 
+  const [sortState, setSortState] = useState(sortTypes[0].value);
+
   useEffect(() => {
     const fetchData = async () => {
       setLoding(true);
-      const files = await getFiles({ types, searchText, sort });
+      const files = await getFiles({ types, searchText, sort: sortState });
       const totalSpaceUsed = await getTotalSpaceUsed();
       setAllFiles(files);
       setTotalSpace(totalSpaceUsed);
@@ -29,7 +32,7 @@ const AllFiles = ({ searchText, sort, types, type }: AllFilesType) => {
     };
 
     fetchData();
-  }, [searchText, sort, types]);
+  }, [searchText, sortState, types]);
 
   const usageSummary = getUsageSummary(totalSpace);
 
@@ -68,7 +71,7 @@ const AllFiles = ({ searchText, sort, types, type }: AllFilesType) => {
                 <p className="body-1 hidden text-light-200 sm:block">
                   Sort By:
                 </p>
-                <Sort />
+                <Sort sort={sortState} setSort={setSortState} />
               </div>
             </div>
           </section>

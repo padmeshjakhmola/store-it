@@ -17,9 +17,11 @@ const Page = async ({ searchParams, params }: SearchParamProps) => {
 
   const types = getFileTypesParams(type) as FileType[];
 
-  const files = await getFiles({ types, searchText, sort });
+  const [files, totalSpace] = await Promise.all([
+    getFiles({ types, searchText, sort }),
+    getTotalSpaceUsed(),
+  ]);
 
-  const [totalSpace] = await Promise.all([getTotalSpaceUsed()]);
   const usageSummary = getUsageSummary(totalSpace);
 
   const totalSpaceForTypes =
@@ -39,7 +41,6 @@ const Page = async ({ searchParams, params }: SearchParamProps) => {
 
           <div className="sort-container">
             <p className="body-1 hidden text-light-200 sm:block">Sort By:</p>
-
             <Sort />
           </div>
         </div>
@@ -52,7 +53,7 @@ const Page = async ({ searchParams, params }: SearchParamProps) => {
           ))}
         </section>
       ) : (
-        <p className="empty-list">No files uploded</p>
+        <p className="empty-list">No files uploaded</p>
       )}
     </div>
   );

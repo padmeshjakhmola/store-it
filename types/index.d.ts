@@ -11,8 +11,13 @@ declare interface ActionType {
   value: string;
 }
 
+// declare interface SearchParamProps {
+//   params?: Promise<SegmentParams>;
+//   searchParams?: Promise<{ [key: string]: string | string[] | undefined }>;
+// }
+
 declare interface SearchParamProps {
-  params?: Promise<SegmentParams>;
+  params?: Promise<{ [key: string]: string }>;
   searchParams?: Promise<{ [key: string]: string | string[] | undefined }>;
 }
 
@@ -76,4 +81,56 @@ declare interface ShareInputProps {
   file: Models.Document;
   onInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onRemove: (email: string) => void;
+}
+
+declare interface AllFilesType {
+  searchText: string;
+  sort?: string;
+  types: FileType[];
+  type: string;
+}
+
+declare interface TotalSpaceCategory {
+  size: number;
+  latestDate: string;
+}
+
+declare interface TotalSpaceUsedType {
+  image: TotalSpaceCategory;
+  document: TotalSpaceCategory;
+  video: TotalSpaceCategory;
+  audio: TotalSpaceCategory;
+  other: TotalSpaceCategory;
+  used: number;
+  all: number;
+}
+
+declare interface FileOwnerType {
+  fullName: string;
+  avatar: string;
+  accountId: string;
+  email: string;
+  $id: string;
+  $createdAt: string;
+  $updatedAt: string;
+  $permissions: string[];
+  $databaseId: string;
+  $collectionId: string;
+}
+
+declare interface AppwriteFileDocumentType extends Models.Document {
+  name: string;
+  url: string;
+  type: string;
+  bucketFileId: string;
+  accountId: string;
+  extension: string;
+  size: number;
+  users: string[];
+  owner: FileOwnerType;
+}
+
+declare interface AllFilesResponseType {
+  total: number;
+  documents: AppwriteFileDocumentType[];
 }

@@ -185,36 +185,73 @@ export const constructDownloadUrl = (bucketFileId: string) => {
 
 // DASHBOARD UTILS
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
+// export const getUsageSummary = (totalSpace: any) => {
+//   return [
+//     {
+//       title: "Documents",
+//       size: totalSpace.document.size,
+//       latestDate: totalSpace.document.latestDate,
+//       icon: "/assets/icons/file-document-light.svg",
+//       url: "/documents",
+//     },
+//     {
+//       title: "Images",
+//       size: totalSpace.image.size,
+//       latestDate: totalSpace.image.latestDate,
+//       icon: "/assets/icons/file-image-light.svg",
+//       url: "/images",
+//     },
+//     {
+//       title: "Media",
+//       size: totalSpace.video.size + totalSpace.audio.size,
+//       latestDate:
+//         totalSpace.video.latestDate > totalSpace.audio.latestDate
+//           ? totalSpace.video.latestDate
+//           : totalSpace.audio.latestDate,
+//       icon: "/assets/icons/file-video-light.svg",
+//       url: "/media",
+//     },
+//     {
+//       title: "Others",
+//       size: totalSpace.other.size,
+//       latestDate: totalSpace.other.latestDate,
+//       icon: "/assets/icons/file-other-light.svg",
+//       url: "/others",
+//     },
+//   ];
+// };
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const getUsageSummary = (totalSpace: any) => {
   return [
     {
       title: "Documents",
-      size: totalSpace.document.size,
-      latestDate: totalSpace.document.latestDate,
+      size: totalSpace?.document?.size || 0,
+      latestDate: totalSpace?.document?.latestDate || null,
       icon: "/assets/icons/file-document-light.svg",
       url: "/documents",
     },
     {
       title: "Images",
-      size: totalSpace.image.size,
-      latestDate: totalSpace.image.latestDate,
+      size: totalSpace?.image?.size || 0,
+      latestDate: totalSpace?.image?.latestDate || null,
       icon: "/assets/icons/file-image-light.svg",
       url: "/images",
     },
     {
       title: "Media",
-      size: totalSpace.video.size + totalSpace.audio.size,
+      size: (totalSpace?.video?.size || 0) + (totalSpace?.audio?.size || 0),
       latestDate:
-        totalSpace.video.latestDate > totalSpace.audio.latestDate
-          ? totalSpace.video.latestDate
-          : totalSpace.audio.latestDate,
+        (totalSpace?.video?.latestDate || "") >
+        (totalSpace?.audio?.latestDate || "")
+          ? totalSpace?.video?.latestDate
+          : totalSpace?.audio?.latestDate,
       icon: "/assets/icons/file-video-light.svg",
       url: "/media",
     },
     {
       title: "Others",
-      size: totalSpace.other.size,
-      latestDate: totalSpace.other.latestDate,
+      size: totalSpace?.other?.size || 0,
+      latestDate: totalSpace?.other?.latestDate || null,
       icon: "/assets/icons/file-other-light.svg",
       url: "/others",
     },
